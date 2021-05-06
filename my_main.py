@@ -1,5 +1,4 @@
 from flask import Flask, render_template, Response
-from camera import VideoCamera
 from camera_360 import Camera360
 import time
 import json
@@ -41,10 +40,11 @@ def video_feed():
             names = new_cam.get_frame()
             print(i % 20, names)
             if i%20==0:
+                json_data = json.dumps(names)
+                yield f"data:{json_data}\n\n"
+                print('go to sleep')
                 time.sleep(5)
-                new_cam.update_cam() 
-            json_data = json.dumps(names)
-            yield f"data:{json_data}\n\n"
+                new_cam.update_cam()
     return Response(generate_info(), mimetype="text/event-stream")
 
 if __name__ == '__main__':

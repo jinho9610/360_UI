@@ -107,8 +107,6 @@
             });
         }
 
-
-
         // function make_classroom(renderer) {
         //     const texture = loader.load(
 
@@ -127,29 +125,29 @@
             const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 
             const fov = 80;
-    const aspect = canvas.width / canvas.height;  // the canvas default
-    const near = 0.1; // near와 far는 카메라로부터의 거리
-    const far = 2500;
-    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.x = -11
-    const controls = new OrbitControls(camera, canvas);
-    controls.target.set(0, 0, 0);
-    controls.update();
+            const aspect = canvas.width / canvas.height;  // the canvas default
+            const near = 0.1; // near와 far는 카메라로부터의 거리
+            const far = 2500;
+            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+            camera.position.x = -11
+            const controls = new OrbitControls(camera, canvas);
+            controls.target.set(0, 0, 0);
+            controls.update();
 
-    const boxWidth = 2000;
-    const boxHeight = 1000;
-    const boxDepth = 2000;
-    const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+            const boxWidth = 2000;
+            const boxHeight = 1000;
+            const boxDepth = 2000;
+            const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
-    //const material = new THREE.MeshBasicMaterial({ color: 0x44aa88 });  // greenish blue
-    const materials = [
-        new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/px.png') }),
-        new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/nx.png') }),
-        new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/py.png') }),
-        new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/ny.png') }),
-        new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/pz.png') }),
-        new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/nz.png') }),
-    ];
+            //const material = new THREE.MeshBasicMaterial({ color: 0x44aa88 });  // greenish blue
+            const materials = [
+                new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/px.png') }),
+                new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/nx.png') }),
+                new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/py.png') }),
+                new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/ny.png') }),
+                new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/pz.png') }),
+                new THREE.MeshBasicMaterial({ side: THREE.BackSide, map: loader.load('static/images/nz.png') }),
+            ];
             //const material = new THREE.MeshPhongMaterial({ color: 0x44aa88 }); // 광원에 반응하는 머터리얼
             const cube = new THREE.Mesh(geometry, materials);
             console.log(cube.position.x);
@@ -166,57 +164,84 @@
             // 광원 위치 // target은 조명이 향하는 곳임 디폴트는 둘다 (0, 0,0)
             scene.add(amb_light);
             function keyDownHandler(e) {
-            if(e.keyCode == 37) { //Arrow Left
-                camera.position.x = +10;
+                if(e.keyCode == 39) { 
+                    camera.position.z  +=10;
 
-            }
-            else if(e.keyCode == 38) {  // Arrow Up
-                camera.position.y = +10;
+                }
+                else if(e.keyCode == 37) { 
+                    camera.position.z -=10;
 
-            }
-            else if(e.keyCode == 39) {  // Arrow Right
-                camera.position.x = -10;
+                } 
+                else if(e.keyCode == 38) {  
+                    camera.position.x +=10; 
 
-            } 
-            else if(e.keyCode == 40) {  // Arrow Down
-                camera.position.y = -10;
+                }
+                else if(e.keyCode == 40) {  
+                    camera.position.x  -=10;
 
-            }
-            else if(e.keyCode == 88) {  // 하늘로
-                camera.position.z = +10;
-            }
-            else if(e.keyCode == 89) {  
-                camera.position.z = -10;
-            }
-        }    
+                }
+                else if(e.keyCode == 90) {  
+                    camera.position.y +=10;
+                }
+                else if(e.keyCode == 88) {  
+                    camera.position.y -=10;
+                }
+                else if(e.keyCode == 49) {  // 주형
+                    camera.position.set(430, 30, -150) ;
+                    controls.target.set(700, 50, 50);
+                    controls.update();
+                }
+                else if(e.keyCode == 50) {  //재현
+                    camera.position.set(130, 30, -150) ;
+                    controls.target.set(700, 50, 50);
+                    controls.update();
+                }
+                else if(e.keyCode == 51) {   //유성
+                    camera.position.set(-170, 30, -150) ;
+                    controls.target.set(700, 50, 50);
+                    controls.update();
+                }
+                else if(e.keyCode == 52) {  //현태
+                    camera.position.set(430, 30, 250) ;
+                    controls.target.set(700, 50, 50);
+                    controls.update();
+                }
+                else if(e.keyCode == 53) {  //진호
+                    camera.position.set(130, 30, 250) ;
+                    controls.target.set(700, 50, 50);
+                    controls.update();
+                }
+                else if(e.keyCode == 48) {  //원점
+                    camera.position.set(0, 70, 0);
+                    controls.target.set(700, 50, 50);
+                    controls.update();
+                }
+                else if(e.keyCode == 33) {  //page up
+                    string ='static/material/JinHo.mtl';
+                }
+                else if(e.keyCode == 34) {  //page down
+                    string ='static/material/Board.mtl';
+                }
+            }   
 
 
         window.addEventListener('keydown', (e) => {
             keyDownHandler(e);
         });
-        // window.addEventListener('keyup', (e) => {
-        //     keyUpHandler(e);
-        // });  
-            
-            //draw_axis();
+        
+        obj_load_with('static/material/HyeonTae.mtl', 'static/obj/HyeonTae.obj');
+        obj_load_with('static/material/Useong.mtl', 'static/obj/Useong.obj');
+        obj_load_with('static/material/JinHo.mtl', 'static/obj/JinHo.obj');
+        obj_load_with('static/material/JooHyeong.mtl', 'static/obj/JooHyeong.obj');
+        obj_load_with('static/material/JeaHyeon.mtl', 'static/obj/JeaHyeon.obj');     
+        obj_load_with('static/material/Board.mtl', 'static/obj/Board.obj');
 
-            //make_classroom(renderer);
-             obj_load_with('static/material/HyeonTae.mtl', 'static/obj/HyeonTae.obj');
-             obj_load_with('static/material/Useong.mtl', 'static/obj/Useong.obj');
-             obj_load_with('static/material/JinHo.mtl', 'static/obj/JinHo.obj');
-             obj_load_with('static/material/JooHyeong.mtl', 'static/obj/JooHyeong.obj');
-             obj_load_with('static/material/JeaHyeon.mtl', 'static/obj/JeaHyeon.obj');
-             
-             obj_load_with('static/material/Board.mtl', 'static/obj/Board.obj');
-
-            function render(time) {
-                time *= 0.001;
-
-                if (resizeRendereToDisplaySize(renderer)) {
-                    const canvas = renderer.domElement;
-                    camera.aspect = canvas.clientWidth / canvas.clientHeight; // 가로세로 비 갱신
-                    camera.updateProjectionMatrix(); // 투영 행렬 업데이트
-                }
+        function render(time) {
+            if (resizeRendereToDisplaySize(renderer)) {
+                const canvas = renderer.domElement;
+                camera.aspect = canvas.clientWidth / canvas.clientHeight; // 가로세로 비 갱신
+                camera.updateProjectionMatrix(); // 투영 행렬 업데이트
+            }
 
                 renderer.render(scene, camera);
                 requestAnimationFrame(render);
@@ -224,209 +249,153 @@
             requestAnimationFrame(render); // 루프 시작
         }
 
+        function makeLabelCanvas(baseWidth, size, name,label_color) {
+            const borderSize = 2;
+            const ctx = document.createElement('canvas').getContext('2d');
+            const font =  `${size}px bold sans-serif`;
+            ctx.font = font;
+            // measure how long the name will be
+            const textWidth = ctx.measureText(name).width;
 
+            const doubleBorderSize = borderSize * 2;
+            const width = baseWidth + doubleBorderSize;
+            const height = size + doubleBorderSize;
+            ctx.canvas.width = width;
+            ctx.canvas.height = height;
 
-        function mymain(vars) {
-            //console.log('data');
-            for (var v in vars) {
-                console.log(v);
-                console.log(vars[v]);
-            }
+            // need to set font again after resizing canvas
+            ctx.font = font;
+            ctx.textBaseline = 'middle';
+            ctx.textAlign = 'center';
+
+            ctx.fillStyle = label_color;
+            ctx.fillRect(0, 0, width, height);
+
+            // scale to fit but don't stretch
+            const scaleFactor = Math.min(1, baseWidth / textWidth);
+            ctx.translate(width / 2, height / 2);
+            ctx.scale(scaleFactor, 1);
+            ctx.fillStyle = 'white';
+            ctx.fillText(name, 0, 0);
+
+            return ctx.canvas;
         }
 
-        var textMesh1 = new THREE.DText({
-        text: "hyeontae",
-        _3d:true,
-        color: 0xffffff
-        });     
+        function makeBillboard(x, y, z,labelWidth,size, name,label_color) {
+
+            const canvas = makeLabelCanvas(labelWidth, size, name,label_color);
+            const texture = new THREE.CanvasTexture(canvas);
+            // because our canvas is likely not a power of 2
+            // in both dimensions set the filtering appropriately.
+            texture.minFilter = THREE.LinearFilter;
+            texture.wrapS = THREE.ClampToEdgeWrapping;
+            texture.wrapT = THREE.ClampToEdgeWrapping;
+
+            const labelMaterial = new THREE.SpriteMaterial({
+            map: texture,
+            transparent: true,
+            });
+
+            const root = new THREE.Object3D();
+            root.position.x = x;
+
+
+            const label = new THREE.Sprite(labelMaterial);
+            root.add(label);
+            label.position.y = y;
+            label.position.z = z;
+
+            const labelBaseScale = 0.1;
+            label.scale.x = canvas.width  * labelBaseScale;
+            label.scale.y = canvas.height * labelBaseScale;
+
+            //scene.add(root);
+            return root;
+        }
+
+
+        var JooHyeong_On = makeBillboard(400, 50, -150, 800, 200, 'JooHyeong', 'blue');
+        var JooHyeong_Off = makeBillboard(400, 50, -150, 800, 200, 'JooHyeong', 'red');
         
-        var textMesh2 = new THREE.DText({
-        text: "jaehyeon",
-        _3d:true,
-        color: 0xffffff,
-        });
-
-        var textMesh3 = new THREE.DText({
-        text: "jinho",
-        _3d:true,
-        color: 0xffffff
-        });   
-
-        var textMesh4 = new THREE.DText({
-        text: "joohyeong",
-        _3d:true,
-        color: 0xffffff
-        });   
-
-        var textMesh5 = new THREE.DText({
-        text: "yoosung",
-        color: 0xffffff,
-        curveSegments: 90,
-        _3d:true
-        });   
-
-        var RtextMesh1 = new THREE.DText({
-        text: "hyeontae",
-        _3d:true,
-        color: 0x000000 
-        });     
+        var JeaHyeon_On =  makeBillboard(100, 50, -150, 800, 200, 'JeaHyeon', 'blue');
+        var JeaHyeon_Off =  makeBillboard(100, 50, -150, 800, 200, 'JeaHyeon', 'red');
         
-        var RtextMesh2 = new THREE.DText({
-        text: "jaehyeon",
-        _3d:true,
-        color: 0x000000 
-        });
+        var Yoosung_On =  makeBillboard(-200, 50, -150, 800, 200, 'Yooseong', 'blue');
+        var Yoosung_Off =  makeBillboard(-200, 50, -150, 800, 200, 'Yooseong', 'red');
+        
+        var HyeonTae_On =  makeBillboard(400, 50, 250, 800, 200, 'HyeonTae', 'blue');
+        var HyeonTae_Off =  makeBillboard(400, 50, 250, 800, 200, 'HyeonTae', 'red');
 
-        var RtextMesh3 = new THREE.DText({
-        text: "jinho",
-        _3d:true,
-        color: 0x000000 
-        });   
-
-        var RtextMesh4 = new THREE.DText({
-        text: "joohyeong",
-        _3d:true,
-        color: 0x000000 
-        });   
-
-        var RtextMesh5 = new THREE.DText({
-        text: "yoosung",
-        color: 0x000000,
-        _3d:true
-        });   
-
-
-        function text(vars){
+        var JinHo_On =  makeBillboard(100, 50, 250, 800, 200, 'JinHo', 'blue');
+        var JinHo_Off =  makeBillboard(100, 50, 250, 800, 200, 'JinHo', 'red');
+       
+        function text(vars) {
             for (var v in vars) {
                 if (vars['hyeontae'] == 'o')
                 {
-                    scene.remove(RtextMesh1)
-                    textMesh1.size =  20;
-                    textMesh1.rotation.y = -30;
-                    textMesh1.position.x=370;
-                    textMesh1.position.y=37;
-                    textMesh1.position.z=-130;
-                    
-                    scene.add( textMesh1 );
+                    scene.remove(HyeonTae_Off);
+                    scene.add(HyeonTae_On);
                 }
                 else
-                {
-                    scene.remove(textMesh1)
-                    RtextMesh1.size =  20;
-                    RtextMesh1.rotation.y = -30;
-                    RtextMesh1.position.x=370;
-                    RtextMesh1.position.y=37;
-                    RtextMesh1.position.z=-130;
-                    
-                    scene.add( RtextMesh1 );
+                {   
+                    scene.remove(HyeonTae_On);
+                    scene.add(HyeonTae_Off);
                 }
-
                 if (vars['jaehyeon'] == 'o')
                 {
-                    scene.remove(RtextMesh2)
-                    textMesh2.size =  20;
-                    textMesh2.rotation.y = -30;
-                    textMesh2.position.x=370;
-                    textMesh2.position.y=37;
-                    textMesh2.position.z=230;
-                    
-                    scene.add( textMesh2 );
+                    scene.remove(JeaHyeon_Off);
+                    scene.add(JeaHyeon_On);
                 }
                 else
-                {
-                    scene.remove(textMesh2)
-                    RtextMesh2.size =  20;
-                    RtextMesh2.rotation.y = -30;
-                    RtextMesh2.position.x=370;
-                    RtextMesh2.position.y=37;
-                    RtextMesh2.position.z=230;
-                    
-                    scene.add( RtextMesh2 );
+                {   
+                    scene.remove(JeaHyeon_On);
+                    scene.add(JeaHyeon_Off);
                 }
-
                 if (vars['jinho'] == 'o')
                 {
-                    scene.remove(RtextMesh3)
-                    textMesh3.size =  20;
-                    textMesh3.rotation.y = -30;
-                    textMesh3.position.x=140;
-                    textMesh3.position.y=37;
-                    textMesh3.position.z=-130;
-                    
-                    scene.add( textMesh3 );
+                    scene.remove(JinHo_Off);
+                    scene.add(JinHo_On);
                 }
                 else
-                {
-                    scene.remove(textMesh3)
-                    RtextMesh3.size =  20;
-                    RtextMesh3.rotation.y = -30;
-                    RtextMesh3.position.x=140;
-                    RtextMesh3.position.y=37;
-                    RtextMesh3.position.z=-130;
-                    
-                    scene.add( RtextMesh3 );
+                {   
+                    scene.remove(JinHo_On);
+                    scene.add(JinHo_Off);
                 }
-
-
                 if (vars['joohyeong'] == 'o')
                 {
-                    
-                    scene.remove(RtextMesh4)
-                    textMesh4.size =  20;
-                    textMesh4.rotation.y = -30;
-                    textMesh4.position.x=140;
-                    textMesh4.position.y=37;
-                    textMesh4.position.z=230;
-                    
-                    scene.add( textMesh4 );
-                    
+                    scene.remove(JooHyeong_Off);
+                    scene.add(JooHyeong_On);
                 }
                 else
-                {
-                    scene.remove(textMesh4)
-                    RtextMesh4.size =  20;
-                    RtextMesh4.rotation.y = -30;
-                    RtextMesh4.position.x=140;
-                    RtextMesh4.position.y=37;
-                    RtextMesh4.position.z=230;
-                    
-                    scene.add( RtextMesh4 );
+                {   
+                    scene.remove(JooHyeong_On);
+                    scene.add(JooHyeong_Off);
                 }
-
                 if (vars['yoosung'] == 'o')
                 {
-                    scene.remove(RtextMesh5)
-                    textMesh5.size =  -100;
-                    textMesh5.rotation.y = -30;
-                    textMesh5.position.x=-180;
-                    textMesh5.position.y=37;
-                    textMesh5.position.z=-130;   
-                   
-                    scene.add( textMesh5 );
+                    scene.remove(Yoosung_Off);
+                    scene.add(Yoosung_On);
                 }
                 else
-                {
-                    scene.remove(textMesh5)
-                    RtextMesh5.size =  2;
-                    RtextMesh5.rotation.y = -30;
-                    RtextMesh5.position.x=-180;
-                    RtextMesh5.position.y=37;
-                    RtextMesh5.position.z=-130;
-                    
-                    scene.add( RtextMesh5 );
+                {   
+                    scene.remove(Yoosung_On);
+                    scene.add(Yoosung_Off);
                 }
             }        
         }
         
-        var i = 1;
-        const source = new EventSource("/video_info_streaming");
-                source.onmessage = function(event) {
-                    const data = JSON.parse(event.data);
-                    //console.log(data);
-                    //mymain(data);
-                    text(data);
 
-                }
+
+        
+        
+        const source = new EventSource("/video_info_streaming");
+        source.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            //console.log(data);
+            //mymain(data);
+            console.log(data);
+            text(data);
+        }
 
         main();
 
