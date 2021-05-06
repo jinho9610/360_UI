@@ -31,7 +31,6 @@ class Camera360(object):
         #cv2.imshow("a",frame)
         #key=cv2.waitKey(1)    
         names = frame_face_grab.face_catcher(frame)
-        print(names)
         
         #ret, jpeg = cv2.imencode('.jpg', frame)
         return names
