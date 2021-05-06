@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360classroom</title>
+    <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><a href="#">360 Twin Classroom</a></h1>
+            <div class="nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                     <li><a href="#">소개</a></li>
+                    <li><a href="#">출결현황</a></li>
+                </ul>
+            </div>
+        </div>
+      
+      <div class="containerBox">
+         <div class="containerBox1">
+            <iframe width=100% height=100% src="https://www.youtube.com/embed/3EhCzN7_9Ks" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        <form action="/" method="GET">
+                            <a href="/virtualSpatial" class="card-link">virtualSpatial</a>
+                        </form>
+                
+                    <form action="/" method="GET">
+                        <a href="/realSpatial" class="card-link2">realSpatial</a>
+                    </form>
+         </div>
+      </div>
+    </div>
+
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'js/script_js.js') }}" ></script>
+    
+    
+    
+
+</body>
+</html>
