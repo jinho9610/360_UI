@@ -18,7 +18,7 @@ categories = model_prediction.categories # 학생 명단 // model_prediction.py�
 IMG_SIZE = (34, 26)  # 입 이미지의 가로, 세로 사이즈
 mouth_model = load_model('mouth_models/2021_04_02_01_57_41.h5')
 class_participants = {}
-check_list = {categories[0]:deque('x'*20, maxlen=20), categories[1]: deque('x'*20, maxlen=20), categories[2]: deque('x'*20, maxlen=20), categories[3]:deque('x'*20, maxlen=20), categories[4]:deque('x'*20, maxlen=20)}
+check_list = {categories[0]:deque('x'*10, maxlen=10), categories[1]: deque('x'*10, maxlen=10), categories[2]: deque('x'*10, maxlen=10), categories[3]:deque('x'*10, maxlen=10), categories[4]:deque('x'*10, maxlen=10)}
 
 # # 입 개폐 여부 파악 함수
 # def check_mouth(face, face_info, name):
@@ -139,7 +139,7 @@ def face_catcher(img): # 한 img에서 얼굴과 그 얼굴의 신원을 파악�
         # else:
         #     check_list[name].appendleft(name_list[name])
         check_list[name].append(name_list[name])
-        if check_list[name].count('o')>=12:
+        if check_list[name].count('o')>=6:
             name_list[name]='o'
         else:
             name_list[name]='x'

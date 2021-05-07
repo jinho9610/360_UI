@@ -38,8 +38,8 @@ def video_feed():
             i += 1
             #time.sleep(1)
             names = new_cam.get_frame()
-            print(i % 20, names)
-            if i%20==0:
+            print(i % 10, names)
+            if i%10==0:
                 json_data = json.dumps(names)
                 yield f"data:{json_data}\n\n"
                 print('go to sleep')

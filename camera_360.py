@@ -10,18 +10,18 @@ ds_factor=0.6
 
 class Camera360(object):
     def __init__(self):
-        #url = "https://youtu.be/ktp6N3krvk0"
-        #video = pafy.new(url)
-        #best = video.getbest(preftype="mp4")
-        #self.video = cv2.VideoCapture(best.url) 
+        # url = "https://youtu.be/Y76yRufNlmU"
+        # video = pafy.new(url)
+        # best = video.getbest(preftype="mp4")
+        # self.video = cv2.VideoCapture(best.url) 
         self.video = cv2.VideoCapture(0)
 
     def update_cam(self):
-        #url = "https://youtu.be/ktp6N3krvk0"
-        #video = pafy.new(url)
-        #best = video.getbest(preftype="mp4")
-        #self.video = cv2.VideoCapture(best.url)
-        self.video.release()
+        # self.video.release()
+        # url = "https://youtu.be/Y76yRufNlmU"
+        # video = pafy.new(url)
+        # best = video.getbest(preftype="mp4")
+        # self.video = cv2.VideoCapture(best.url)
         self.video = cv2.VideoCapture(0)
 
     def get_frame(self):
